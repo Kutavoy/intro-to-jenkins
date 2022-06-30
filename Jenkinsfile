@@ -17,11 +17,11 @@ pipeline {
             }
         }
     }
-}
-post {
-    failure {
-        mail to: 's.kutenko@gmail.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+    post {
+        always {
+            mail to: 's.kutenko@gmail.com',
+                 subject: "Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Build URL ${env.BUILD_URL}"
+        }
     }
 }
